@@ -1,3 +1,5 @@
+import java.net.URL
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -38,7 +40,7 @@ tasks.register("downloadModel") {
     doLast {
         if (!modelFile.exists() || modelFile.length() < 1_000_000) {
             modelFile.parentFile.mkdirs()
-            java.net.URL("https://storage.googleapis.com/mediapipe-models/object_detector/efficientdet_lite0/float32/1/efficientdet_lite0.tflite")
+            URL("https://storage.googleapis.com/mediapipe-models/object_detector/efficientdet_lite0/float32/1/efficientdet_lite0.tflite")
                 .openStream().use { input -> modelFile.outputStream().use { input.copyTo(it) } }
         }
     }
